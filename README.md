@@ -14,6 +14,7 @@ model_lookup.csv     -> model_lookup.parquet
 
 ## Repository Structure
 
+```text
 repo/
 │
 ├─ transform_to_parquet.py
@@ -26,6 +27,7 @@ repo/
 └─ output/
    ├─ mapping.parquet
    └─ lookup.parquet
+```
 
 
 ## Getting Started
