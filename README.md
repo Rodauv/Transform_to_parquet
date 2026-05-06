@@ -4,13 +4,18 @@
 
 This utility converts `.csv` and `.xlsx` files into `.parquet` format using Python.
 
-It is intended for one-off manual transformations of mapping files, static reference data, or small local datasets where an Azure Data Factory pipeline is not required.
+It is intended for one-off manual transformations of mapping files, static reference data, or small local datasets where an integration pipeline is not required.
 
 The script scans the `input` folder, identifies supported source files, and creates matching `.parquet` files in the `output` folder.
 
 Example:
-dealer_mapping.xlsx  -> dealer_mapping.parquet
-model_lookup.csv     -> model_lookup.parquet
+
+```text
+data_mapping.xlsx   ->   data_mapping.parquet
+category_master.csv ->   category_master.parquet
+```
+
+---
 
 ## Repository Structure
 
@@ -29,6 +34,7 @@ repo/
    └─ lookup.parquet
 ```
 
+---
 
 ## Getting Started
 
@@ -37,12 +43,11 @@ repo/
 Before running the transformer, make sure the following are available on your computer:
 
 1. Copy the content to a repository.
-2. Install Python 3.x on your computer.  
-   Available in Company Portal:  
-   `ApplicationId=f36664b0-f618-49b1-b8d6-f23ee4b60cff`
+2. Install Python 3.x on your computer.
 3. Add the Jupyter extension to VS Code.
 4. Install the required Python packages.
 
+---
 
 ## Installation
 
@@ -54,14 +59,26 @@ Run the following command in the terminal:
 pip install -r requirements.txt
 ```
 
+The `requirements.txt` file should contain:
+
+```text
+pandas
+pyarrow
+openpyxl
+```
+
+---
+
 ## Usage
 
 Place the source files you want to convert in the `input` folder.
 
 Supported source formats:
+
+```text
 .csv
 .xlsx
-
+```
 
 Run the transformer:
 
@@ -71,17 +88,24 @@ python transform_to_parquet.py
 
 The converted files will be created in the `output` folder.
 
+---
 
 ## Output
 
 Each source file is converted into a `.parquet` file with the same base name.
 
 Example:
+
+```text
 input/mapping.xlsx  -> output/mapping.parquet
 input/lookup.csv    -> output/lookup.parquet
+```
 
+---
 
 ## Example Console Output
+
+```text
 Initiating transformer
 Input folder: C:\Repos\csv-xlsx-to-parquet\input
 Output folder: C:\Repos\csv-xlsx-to-parquet\output
@@ -92,6 +116,9 @@ Extracting csv files: 1
 Converting Excel: mapping.xlsx -> mapping.parquet
 Converting CSV: lookup.csv -> lookup.parquet
 Transformation completed.
+```
+
+---
 
 ## Notes
 
@@ -101,6 +128,7 @@ Transformation completed.
 - The utility is intended for simple manual transformations.
 - For recurring or production data loads, use an Azure Data Factory pipeline instead.
 
+---
 
 ## Manual Validation
 
@@ -112,3 +140,29 @@ import pandas as pd
 df = pd.read_parquet("output/mapping.parquet")
 print(df.head())
 ```
+
+---
+
+## Build and Test
+
+There is currently no automated test framework included.
+
+To test the transformer manually:
+
+1. Add one sample `.csv` file to the `input` folder.
+2. Add one sample `.xlsx` file to the `input` folder.
+3. Run the transformer.
+4. Confirm that matching `.parquet` files are created in the `output` folder.
+5. Read one generated `.parquet` file back into Python to confirm the content.
+
+---
+
+## Contribute
+
+When updating the transformer, consider the following:
+
+- Keep the script simple and readable.
+- Avoid adding ADF-specific logic.
+- Document any assumptions about delimiters, encodings, sheet names, or column handling.
+- Test changes with both `.csv` and `.xlsx` input files.
+- Update this README when behavior changes.
