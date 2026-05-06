@@ -64,7 +64,6 @@ The `requirements.txt` file should contain:
 ```text
 pandas
 pyarrow
-openpyxl
 ```
 
 ---
