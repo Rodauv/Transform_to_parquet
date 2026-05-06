@@ -44,8 +44,7 @@ Before running the transformer, make sure the following are available on your co
 
 1. Copy the content to a repository.
 2. Install Python 3.x on your computer.
-3. Add the Jupyter extension to VS Code.
-4. Install the required Python packages.
+3. Install the required Python packages.
 
 ---
 
