@@ -155,12 +155,3 @@ To test the transformer manually:
 
 ---
 
-## Contribute
-
-When updating the transformer, consider the following:
-
-- Keep the script simple and readable.
-- Avoid adding ADF-specific logic.
-- Document any assumptions about delimiters, encodings, sheet names, or column handling.
-- Test changes with both `.csv` and `.xlsx` input files.
-- Update this README when behavior changes.
